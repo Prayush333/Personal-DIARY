@@ -1,0 +1,14 @@
+{% extends 'diary/base.html' %}
+
+{% block title %}Delete Entry{% endblock %}
+
+{% block content %}
+<h1>Delete Diary Entry</h1>
+<p>Are you sure you want to delete the entry titled "<strong>{{ entry.title }}</strong>"?</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Yes, Delete</button>
+  <a href="{% url 'entry_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+</form>
+{% endblock %}
