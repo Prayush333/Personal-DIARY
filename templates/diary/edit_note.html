@@ -1,21 +1,21 @@
-{% extends 'diary/base.html' %}
-
-{% block title %}Edit Entry{% endblock %}
-
+{% extends 'base.html' %}
 {% block content %}
-<h1>Edit Diary Entry</h1>
-
 <form method="post" novalidate>
   {% csrf_token %}
+  
   <div class="mb-3">
-    <label for="id_title" class="form-label">Title</label>
-    {{ form.title|as_crispy_field }}
+    <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+    {{ form.title }}
   </div>
+
   <div class="mb-3">
-    <label for="id_content" class="form-label">Content</label>
-    {{ form.content|as_crispy_field }}
+    <label for="{{ form.content.id_for_label }}" class="form-label">Content</label>
+    {{ form.content }}
   </div>
-  <button type="submit" class="btn btn-primary">Update Entry</button>
-  <a href="{% url 'entry_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+  
+  <button type="submit" class="btn btn-primary">Update Notes</button>
+  <a href="{% url 'note_list' %}" class="btn btn-secondary ms-2">Cancel</a>
 </form>
-{% endblock %}
+
+{% endblock content %}
+

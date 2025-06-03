@@ -1,21 +1,21 @@
-{% extends 'diary/base.html' %}
+{% extends 'base.html' %}
 
-{% block title %}Add New Entry{% endblock %}
+{% block title %}Add New Note{% endblock %}
 
 {% block content %}
-<h1>Add New Diary Entry</h1>
+<h1>Add New  Note</h1>
 
 <form method="post" novalidate>
   {% csrf_token %}
   <div class="mb-3">
     <label for="id_title" class="form-label">Title</label>
-    {{ form.title|as_crispy_field }}
+    {{ form.title }}
   </div>
   <div class="mb-3">
     <label for="id_content" class="form-label">Content</label>
-    {{ form.content|as_crispy_field }}
+    {{ form.content }}
   </div>
-  <button type="submit" class="btn btn-primary">Save Entry</button>
-  <a href="{% url 'entry_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+  <button type="submit" class="btn btn-primary">Save Note</button>
+  <a href="{% url 'note_list' %}" class="btn btn-secondary ms-2">Cancel</a>
 </form>
 {% endblock %}
