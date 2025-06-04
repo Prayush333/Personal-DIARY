@@ -3,19 +3,25 @@
 {% block title %}Add New Note{% endblock %}
 
 {% block content %}
-<h1>Add New  Note</h1>
+<div class="card shadow-sm mx-auto" style="max-width: 600px;">
+  <div class="card-body">
+    <h1 class="card-title mb-4 text-center">Add New Note</h1>
 
-<form method="post" novalidate>
-  {% csrf_token %}
-  <div class="mb-3">
-    <label for="id_title" class="form-label">Title</label>
-    {{ form.title }}
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+        {{ form.title }}
+      </div>
+      <div class="mb-3">
+        <label for="{{ form.content.id_for_label }}" class="form-label">Content</label>
+        {{ form.content }}
+      </div>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary px-5">Save Note</button>
+        <a href="{% url 'note_list' %}" class="btn btn-secondary ms-3">Cancel</a>
+      </div>
+    </form>
   </div>
-  <div class="mb-3">
-    <label for="id_content" class="form-label">Content</label>
-    {{ form.content }}
-  </div>
-  <button type="submit" class="btn btn-primary">Save Note</button>
-  <a href="{% url 'note_list' %}" class="btn btn-secondary ms-2">Cancel</a>
-</form>
+</div>
 {% endblock %}

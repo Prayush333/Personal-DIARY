@@ -1,21 +1,27 @@
 {% extends 'base.html' %}
+
+{% block title %}Edit Note{% endblock %}
+
 {% block content %}
-<form method="post" novalidate>
-  {% csrf_token %}
-  
-  <div class="mb-3">
-    <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
-    {{ form.title }}
+<div class="card shadow-sm mx-auto" style="max-width: 600px;">
+  <div class="card-body">
+    <h1 class="card-title mb-4 text-center">Edit Note</h1>
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+        {{ form.title }}
+      </div>
+      <div class="mb-3">
+        <label for="{{ form.content.id_for_label }}" class="form-label">Content</label>
+        {{ form.content }}
+      </div>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary px-5">Update Note</button>
+        <a href="{% url 'note_list' %}" class="btn btn-secondary ms-3">Cancel</a>
+      </div>
+    </form>
   </div>
-
-  <div class="mb-3">
-    <label for="{{ form.content.id_for_label }}" class="form-label">Content</label>
-    {{ form.content }}
-  </div>
-  
-  <button type="submit" class="btn btn-primary">Update Notes</button>
-  <a href="{% url 'note_list' %}" class="btn btn-secondary ms-2">Cancel</a>
-</form>
-
-{% endblock content %}
-
+</div>
+{% endblock %}

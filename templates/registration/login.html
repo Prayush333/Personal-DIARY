@@ -1,14 +1,11 @@
-
 {% extends 'base.html' %}
-
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center vh-100">
-  <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">
-    <h2 class="text-center mb-4">Login</h2>
-
-    <form method="post">
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+    <h2 class="mb-4 text-center">Login</h2>
+    <form method="post" novalidate>
       {% csrf_token %}
       {% if form.errors %}
         <div class="alert alert-danger">Invalid username or password.</div>
@@ -19,7 +16,7 @@
       </div>
       <div class="mb-3">
         {{ form.password.label_tag }}
-        {{ form.password }}
+        {{ form.password}}
       </div>
       <button type="submit" class="btn btn-primary w-100">Login</button>
     </form>
@@ -31,4 +28,3 @@
   </div>
 </div>
 {% endblock %}
-

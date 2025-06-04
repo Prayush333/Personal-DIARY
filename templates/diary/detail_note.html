@@ -1,20 +1,19 @@
 {% extends 'base.html' %}
-{% block content %}
+{% block title %}{{ note.title }}{% endblock %}
 
-<div class="container">
-  <div class="card shadow rounded p-4">
-    <h2 class="mb-3">{{note.title}}</h2>
+{% block content %}
+<div class="card shadow-sm mx-auto" style="max-width: 700px;">
+  <div class="card-body">
+    <h2 class="card-title">{{ note.title }}</h2>
     <p class="text-muted">Created on: <strong>{{ note.created_at|date:"M d, Y H:i" }}</strong></p>
     <hr />
-    <p>
-      {{note.content}}
-    </p>
-    <div class="mt-4">
-      
-          <a href="{% url 'edit_note' note.id %}" class="btn btn-sm btn-outline-primary me-2">Edit</a>
-          <a href="{% url 'delete_note' note.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
-          <a href="{%url 'note_list'%}" class="btn btn-secondary">Back to Notes</a>
-        </div>
+    <p>{{ note.content|linebreaksbr }}</p>
+
+    <div class="mt-4 d-flex gap-2">
+      <a href="{% url 'edit_note' note.id %}" class="btn btn-outline-primary">Edit</a>
+      <a href="{% url 'delete_note' note.id %}" class="btn btn-outline-danger">Delete</a>
+      <a href="{% url 'note_list' %}" class="btn btn-secondary ms-auto">Back to Notes</a>
+    </div>
   </div>
 </div>
-{% endblock content %}
+{% endblock %}
