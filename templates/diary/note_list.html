@@ -1,26 +1,59 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}My Notes{% endblock %}
 
 {% block content %}
-<h1 class="mb-4 text-center">My Notes</h1>
+<!-- Custom Note Styles -->
+<link rel="stylesheet" href="{% static 'css/note_style.css' %}">
 
-{% if notes %}
-  <div class="list-group mx-auto" style="max-width: 700px;">
-    {% for note in notes %}
-      <div class="list-group-item d-flex justify-content-between align-items-center">
-        <div>
-          <h5 class="mb-1">{{ note.title }}</h5>
-          <small class="text-muted">{{ note.created_at|date:"M d, Y H:i" }}</small>
+<div class="note-container">
+  <h1 class="text-center">📒 My Notes</h1>
+
+  <form method="get" class="note-toolbar">
+    <input type="text" name="search" value="{{ request.GET.search }}" placeholder="Search notes..." class="search-input">
+
+    <select name="paginate" onchange="this.form.submit()" class="select-input">
+      {% for option in paginate_options %}
+        <option value="{{ option }}" {% if request.GET.paginate == option %}selected{% endif %}>{{ option }}/page</option>
+      {% endfor %}
+    </select>
+
+    <button type="submit" class="btn filter-btn">Filter</button>
+    <a href="{% url 'add_note' %}" class="btn add-btn">+ Add Note</a>
+  </form>
+
+  {% if notes %}
+    <div class="note-list">
+      {% for note in notes %}
+        <div class="note-card">
+          <div class="note-card-body">
+            <h2 class="note-title">{{ note.title }}</h2>
+            <p class="note-date">{{ note.created_at|date:"M d, Y • h:i A" }}</p>
+            <a href="{% url 'detail_note' note.id %}" class="btn view-btn">👁 View</a>
+          </div>
         </div>
-        <div>
-          <a href="{% url 'detail_note' note.id %}" class="btn btn-sm btn-success me-2">View</a>
-          <a href="{% url 'edit_note' note.id %}" class="btn btn-sm btn-primary me-2">Edit</a>
-          <a href="{% url 'delete_note' note.id %}" class="btn btn-sm btn-danger">Delete</a>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-{% else %}
-  <p class="text-center">No notes yet. <a href="{% url 'add_note' %}">Add your first note</a>.</p>
-{% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+      <nav class="pagination-wrapper mt-4">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">«</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">‹</a></li>
+          {% endif %}
+          <li class="page-item active"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+          {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">›</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">»</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% endif %}
+  {% else %}
+    <p class="text-muted text-center mt-4">No notes found.</p>
+  {% endif %}
+</div>
 {% endblock %}

@@ -1,18 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}{{ note.title }}{% endblock %}
 
 {% block content %}
-<div class="card shadow-sm mx-auto" style="max-width: 700px;">
-  <div class="card-body">
-    <h2 class="card-title">{{ note.title }}</h2>
-    <p class="text-muted">Created on: <strong>{{ note.created_at|date:"M d, Y H:i" }}</strong></p>
-    <hr />
-    <p>{{ note.content|linebreaksbr }}</p>
+<link rel="stylesheet" href="{% static 'css/note_style.css' %}">
 
-    <div class="mt-4 d-flex gap-2">
-      <a href="{% url 'edit_note' note.id %}" class="btn btn-outline-primary">Edit</a>
-      <a href="{% url 'delete_note' note.id %}" class="btn btn-outline-danger">Delete</a>
-      <a href="{% url 'note_list' %}" class="btn btn-secondary ms-auto">Back to Notes</a>
+<div class="note-detail-container mx-auto" style="max-width: 800px;">
+  <div class="card shadow-sm p-4">
+    <div class="card-body">
+      <h1 class="card-title text-primary mb-3">{{ note.title }}</h1>
+      <p class="text-muted small">🕒 Created on: <strong>{{ note.created_at|date:"M d, Y H:i" }}</strong></p>
+      <hr />
+      <p class="note-content-text mt-4">{{ note.content|linebreaksbr }}</p>
+
+      <div class="mt-5 d-flex flex-wrap gap-3 justify-content-between">
+        <div>
+          <a href="{% url 'edit_note' note.id %}" class="btn btn-outline-primary px-4">✏️ Edit</a>
+          <a href="{% url 'delete_note' note.id %}" class="btn btn-outline-danger px-4">🗑️ Delete</a>
+        </div>
+        <a href="{% url 'note_list' %}" class="btn btn-secondary px-4">← Back to Notes</a>
+      </div>
     </div>
   </div>
 </div>

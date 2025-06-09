@@ -10,10 +10,28 @@ from django.contrib.auth.forms import UserCreationForm
 class NoteListView( LoginRequiredMixin, ListView):
     model= Note
     template_name='diary/note_list.html'
-    context_object_name = 'notes' 
-
+    context_object_name = 'notes'
+     
     def get_queryset(self):
-        return Note.objects.filter(user=self.request.user)
+        qs = Note.objects.filter(user=self.request.user).order_by('created_at')
+        search = self.request.GET.get('search')
+        if search:
+            qs = qs.filter(title__icontains=search)
+
+        return qs
+
+    def get_paginate_by(self, queryset):
+        paginate_by = self.request.GET.get('paginate', 5)
+        try:
+            return int(paginate_by)
+        
+        except (ValueError, TypeError):
+            return 5
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['paginate_options'] = ['5', '10', '20', '50']
+        return context
 
 
 class NoteDetailView(LoginRequiredMixin, DetailView):

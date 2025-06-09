@@ -1,0 +1,277 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f3f6fb;
+  color: #2c3e50;
+}
+
+.note-container {
+  background: white;
+  padding: 2rem;
+  margin: 2rem auto;
+  border-radius: 1rem;
+  max-width: 960px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.note-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+}
+
+.search-input,
+.select-input {
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  border: 2px solid #1abc9c;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+}
+
+.search-input:focus,
+.select-input:focus {
+  border-color: #16a085;
+  box-shadow: 0 0 6px rgba(26, 188, 156, 0.4);
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: none;
+}
+
+.filter-btn {
+  background-color: #1abc9c;
+  color: white;
+}
+
+.filter-btn:hover {
+  background-color: #16a085;
+  box-shadow: 0 4px 12px rgba(22, 160, 133, 0.4);
+}
+
+.add-btn {
+  background-color: #3498db;
+  color: white;
+  margin-left: auto;
+}
+
+.add-btn:hover {
+  background-color: #2980b9;
+  box-shadow: 0 4px 12px rgba(41, 128, 185, 0.4);
+}
+
+.note-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.note-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  box-shadow: 0 5px 20px rgba(26, 188, 156, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.note-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(26, 188, 156, 0.2);
+}
+
+.note-card-body {
+  padding: 1.5rem;
+}
+
+.note-title {
+  font-size: 1.25rem;
+  color: #117864;
+  margin-bottom: 0.5rem;
+}
+
+.note-date {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-bottom: 1rem;
+}
+
+.view-btn {
+  background-color: #e67e22;
+  color: white;
+}
+
+.view-btn:hover {
+  background-color: #d35400;
+  box-shadow: 0 4px 12px rgba(211, 84, 0, 0.4);
+}
+
+.pagination-wrapper .page-link {
+  border-radius: 50%;
+  margin: 0 5px;
+  border: 2px solid #16a085;
+  color: #16a085;
+  font-weight: 600;
+}
+
+.pagination-wrapper .page-link:hover {
+  background-color: #1abc9c;
+  color: white;
+}
+
+.pagination-wrapper .active .page-link {
+  background-color: #117864;
+  border-color: #117864;
+  color: white;
+  box-shadow: 0 8px 25px rgba(17, 120, 100, 0.7);
+}
+
+.edit-note-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.edit-note-form .form-label {
+  font-weight: 600;
+  color: #117864;
+  margin-bottom: 0.5rem;
+}
+
+.edit-note-form .form-control {
+  border-radius: 50px;
+  border: 2px solid #1abc9c;
+  padding: 0.9rem 1.4rem;
+  font-size: 1.1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edit-note-form .form-control:focus {
+  border-color: #16a085;
+  box-shadow: 0 0 8px #16a085;
+}
+
+.edit-note-form .btn-primary {
+  background-color: #1abc9c;
+  border-color: #1abc9c;
+}
+
+.edit-note-form .btn-primary:hover {
+  background-color: #16a085;
+  border-color: #16a085;
+  box-shadow: 0 6px 15px rgba(22, 160, 133, 0.4);
+}
+
+.edit-note-form .btn-secondary {
+  background-color: #7f8c8d;
+  border-color: #7f8c8d;
+  color: white;
+}
+
+.edit-note-form .btn-secondary:hover {
+  background-color: #606b71;
+  border-color: #606b71;
+  box-shadow: 0 6px 15px rgba(96, 107, 113, 0.4);
+}
+
+.note-detail-container {
+  margin-top: 40px;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  font-family: 'Poppins', sans-serif;
+  color: #2c3e50;
+}
+
+.note-content-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #34495e;
+  white-space: pre-wrap;
+}
+
+.btn-outline-primary,
+.btn-outline-danger,
+.btn-secondary {
+  border-radius: 30px;
+  font-weight: 600;
+}
+
+.btn-outline-primary:hover {
+  background-color: #1abc9c;
+  color: white;
+  border-color: #1abc9c;
+}
+
+.btn-outline-danger:hover {
+  background-color: #e74c3c;
+  color: white;
+  border-color: #e74c3c;
+}
+
+.btn-secondary:hover {
+  background-color: #7f8c8d;
+  color: white;
+}
+
+.delete-note-container {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  font-family: 'Poppins', sans-serif;
+  color: #2c3e50;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b !important;
+  border-color: #c0392b !important;
+  color: #fff;
+  box-shadow: 0 6px 15px rgba(192, 57, 43, 0.4);
+}
+
+.btn-secondary:hover {
+  background-color: #7f8c8d;
+  color: white;
+}
+
+.add-note-container {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  font-family: 'Poppins', sans-serif;
+  color: #2c3e50;
+}
+
+.card-title {
+  font-weight: 600;
+}
+
+.btn-success {
+  background-color: #1abc9c;
+  border-color: #1abc9c;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-success:hover {
+  background-color: #16a085;
+  border-color: #16a085;
+  box-shadow: 0 6px 15px rgba(22, 160, 133, 0.4);
+}
+
+.btn-outline-secondary:hover {
+  background-color: #7f8c8d;
+  color: white;
+}

@@ -1,19 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Delete Note{% endblock %}
 
 {% block content %}
-<div class="card shadow-sm mx-auto text-center" style="max-width: 480px;">
-  <div class="card-body">
-    <h2 class="mb-4">Delete Note</h2>
-    <p>Are you sure you want to delete the note titled <strong>{{ note.title }}</strong>?</p>
-    <form method="post">
-      {% csrf_token %}
-      <div class="d-flex justify-content-center gap-3 mt-4">
-        <button type="submit" class="btn btn-danger px-4">Yes, Delete</button>
-        <a href="{% url 'note_list' %}" class="btn btn-secondary px-4">Cancel</a>
-      </div>
-    </form>
+<link rel="stylesheet" href="{% static 'css/note_style.css' %}">
+
+<div class="delete-note-container mx-auto text-center" style="max-width: 500px; margin-top: 60px;">
+  <div class="card shadow-sm p-4">
+    <div class="card-body">
+      <h2 class="text-danger mb-4">⚠️ Delete Note</h2>
+      <p class="fs-5">Are you sure you want to delete <strong>{{ note.title }}</strong>?</p>
+      <p class="text-muted small">This action cannot be undone.</p>
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="d-flex justify-content-center gap-3 mt-4">
+          <button type="submit" class="btn btn-danger px-4">🗑️ Yes, Delete</button>
+          <a href="{% url 'note_list' %}" class="btn btn-secondary px-4">Cancel</a>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 {% endblock %}
